@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_15_154737) do
+ActiveRecord::Schema.define(version: 2018_09_15_160725) do
 
   create_table "addresses", force: :cascade do |t|
     t.string "address"
@@ -37,6 +37,44 @@ ActiveRecord::Schema.define(version: 2018_09_15_154737) do
     t.float "rate"
     t.string "hsn"
     t.string "gst"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "purchase_invoices", force: :cascade do |t|
+    t.integer "bill_number"
+    t.integer "supplier_id"
+    t.datetime "date"
+    t.float "discount"
+    t.string "payment_type"
+    t.float "amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "purchase_orders", force: :cascade do |t|
+    t.integer "purchase_invoice_id"
+    t.integer "product_id"
+    t.integer "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "sales_invoices", force: :cascade do |t|
+    t.integer "bill_number"
+    t.integer "customer_id"
+    t.datetime "date"
+    t.float "discount"
+    t.string "payment_type"
+    t.float "amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "sales_orders", force: :cascade do |t|
+    t.integer "sales_invoice_id"
+    t.integer "product_id"
+    t.integer "quantity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
